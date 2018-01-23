@@ -1,2 +1,4 @@
 *.pyc
+*.old
 __pycache__
+userExcept.py
