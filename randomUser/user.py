@@ -139,7 +139,7 @@ def get_user(results=1, gender="", pass_charset="", pass_length="", seed="", for
 
     res = requests.get(user_url)
     if res.status_code != 200:
-        return 0
+        raise RandomUserError('Error returned from randomuser.me')
     else:
         if not format or format in ['json', 'pretty']:
             return res.json()['results']
