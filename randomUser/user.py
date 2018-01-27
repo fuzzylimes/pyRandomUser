@@ -64,7 +64,7 @@ def get_user(results=1, gender="", pass_charset="", pass_length="", seed="", for
     # Validate password values
     #########################
     if (pass_charset and not pass_length) or (not pass_charset and pass_length):
-        raise passwordLengthError()
+        raise RandomUserError('Both pass_length and pass_charset must be provided when defining the password.')
     if pass_charset and pass_length:
         for item in pass_charset.split(','):
             if not item.strip(' ') in ["special", "upper", "lower", "number"]:
@@ -147,20 +147,6 @@ def get_user(results=1, gender="", pass_charset="", pass_length="", seed="", for
             return res.text
 
 if __name__ == "__main__":
-    # print(get_user())
-    # print(get_user(results=5))
-    # print(get_user(gender="female"))
-    # print(get_user(pass_charset="special", pass_length="20"))
-    # print(get_user(pass_charset="", pass_length="1"))
-    # print(get_user(pass_charset="upper", pass_length=""))
-    # print(get_user(pass_charset="uppper", pass_length="2"))
-    # print(get_user(pass_charset="upper", pass_length="3-2"))
-    # print(get_user(pass_charset="upper", pass_length="0"))
-    # print(get_user(pass_charset="upper", pass_length="80"))
-    # print(get_user(pass_charset="upper", pass_length="1-a"))
-    # print(get_user(pass_charset="upper", pass_length="a"))
-    # print(get_user(pass_charset="special", pass_length="20", seed="kappa"))
-    # print(get_user(pass_charset="special", pass_length="20", seed="kappa"))
     # print(get_user(format="asdf"))
     # print(get_user(format="csv"))
     # print(get_user(format="pretty"))
