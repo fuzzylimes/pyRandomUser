@@ -2,6 +2,17 @@ This python module is a wrapper for the https://randomuser.me/ random user gener
 
 As with any scraping tool, please be mindful of the site owners. If you find yourself using their service often, consider supporting their project. The randomuser.me service is completely free and open sourced.
 
+### Installation
+Two simple ways to install the package:
+
+#### Install via pip
+Run the following command to install to your environment (includes dependencies):
+`pip install git+git://github.com/fuzzylimes/pyRandomUser.git`
+
+#### Install via setup.py
+* Clone the repo from github
+* Navigate into the folder and run `pip install .`
+
 ### Background
 The goal of this project was to make it easy to use the randomuser.me api from within any python project. If a user needs to generate some random user data to seed their project or database with, this gives them the capability.
 
@@ -86,3 +97,13 @@ All of these paraters are defined below:
 * Not specifically defining the password will cause a random 8-64 character password to be generated
 * Data will be returned in `json` format by default
 * If you select anything other than `json` or `pretty` formats, it will be returned as a text string
+
+#### Handling Exceptions
+If the query fails due to incorrect parameters, an `Exception` will be raised with an error message. Here's an example of how to setup up your search to utlize this:
+
+```python
+try:
+    get_user()
+except Exception as e:
+    print(e)
+```
