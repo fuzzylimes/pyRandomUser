@@ -45,6 +45,35 @@ class TestPositiveCases(TestCase):
         res2_name = res[0]['name']['first']
         self.assertEqual(res_name, res2_name)
 
+    def test_format_csv(self):
+        res = get_user(format="csv")
+        print(res)
+        self.assertTrue(res)
+
+    def test_format_yaml(self):
+        res = get_user(format="yaml")
+        print(res)
+        self.assertTrue(res)
+
+    def test_format_xml(self):
+        res = get_user(format="xml")
+        print(res)
+        self.assertTrue(res)
+
+    def test_nat_dk(self):
+        res = get_user(nat="dk")
+        self.assertEqual('dk', res[0]['nat'].lower())
+
+    def test_inc(self):
+        res = get_user(inc="gender,nat")
+        self.assertIn('gender', res[0].keys())
+        self.assertIn('nat', res[0].keys())
+    
+    def test_exc(self):
+        res = get_user(exc="gender,nat")
+        self.assertNotIn('gender', res[0].keys())
+        self.assertNotIn('nat', res[0].keys())
+
 
 class TestFailureCases(TestCase):
     def test_small_results(self):
@@ -86,3 +115,19 @@ class TestFailureCases(TestCase):
     def test_invalid_pass_length_1a(self):
         with self.assertRaises(passwordLengthError):
             get_user(pass_charset="upper", pass_length="1-a")
+
+    def test_format_invalid(self):
+        with self.assertRaises(formatError):
+            get_user(format="pdf")
+
+    def test_nat_invalid(self):
+        with self.assertRaises(natError):
+            get_user(nat="au,blt,yu")
+
+    def test_inc_invalid(self):
+        with self.assertRaises(incError):
+            get_user(inc="gender,asd,picture")
+
+    def test_exc_invalid(self):
+        with self.assertRaises(excError):
+            get_user(exc="gender,asd,picture")
