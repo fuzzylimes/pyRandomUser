@@ -37,7 +37,7 @@ class incError(RandomUserError):
 class excError(RandomUserError):
     """When there's an error with the nat value"""
     def __init__(self):
-        super(incError, self).__init__(message='Invalid inc format. inc must be a single value or comma separated list of values from the following list of parameters: gender, name, location, email, login, registered, dob, phone, cell, id, picture, nat')
+        super(excError, self).__init__(message='Invalid inc format. inc must be a single value or comma separated list of values from the following list of parameters: gender, name, location, email, login, registered, dob, phone, cell, id, picture, nat')
 
 
 def get_user(results=1, gender="", pass_charset="", pass_length="", seed="", format="", nat="", inc="", exc=""):
@@ -147,10 +147,4 @@ def get_user(results=1, gender="", pass_charset="", pass_length="", seed="", for
             return res.text
 
 if __name__ == "__main__":
-    # print(get_user(format="asdf"))
-    # print(get_user(format="csv"))
-    # print(get_user(format="pretty"))
-    # print(get_user(nat="de"))
-    print(get_user(results=10000))
-    # print(get_user(inc="gender,name,location"))
-    # print(get_user(exc="registered, login, picture"))
+    print(get_user())
