@@ -8,6 +8,6 @@ setup(name='python_randomUser',
       license='MIT',
       packages=['randomUser'],
       install_requires=[
-          'requests==2.18.4'
+          'requests==2.20.0'
       ],
       zip_safe=False)
